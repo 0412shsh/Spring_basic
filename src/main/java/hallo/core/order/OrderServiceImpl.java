@@ -9,12 +9,19 @@ import hallo.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements  OrderService{
 
-    private final MemberRepositoy memberRepositoy = new MemoryMemberRepository();
+    //private final MemberRepositoy memberRepositoy = new MemoryMemberRepository();
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     // 구현체의 의존성 삭제, 인터페이스에만 의존!!
-    private DiscountPolicy discountPolicy;
+    private final MemberRepositoy memberRepositoy;
+    private final DiscountPolicy discountPolicy;
+
+    // 생성자 주입 - 객체 사용할 수 있게함
+    public OrderServiceImpl(MemberRepositoy memberRepositoy, DiscountPolicy discountPolicy) {
+        this.memberRepositoy = memberRepositoy;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
