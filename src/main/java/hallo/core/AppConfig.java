@@ -2,6 +2,7 @@ package hallo.core;
 
 import hallo.core.discount.DiscountPolicy;
 import hallo.core.discount.FixDiscountPolicy;
+import hallo.core.discount.RateDiscountPolicy;
 import hallo.core.member.MemberRepositoy;
 import hallo.core.member.MemberService;
 import hallo.core.member.MemberServiceImpl;
@@ -24,7 +25,8 @@ public class AppConfig {
     }
 
     public DiscountPolicy discountPolicy(){
-        return new FixDiscountPolicy();
+        // return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
 
